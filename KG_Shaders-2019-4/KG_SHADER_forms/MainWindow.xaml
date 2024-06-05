@@ -1,0 +1,266 @@
+﻿<Window x:Class="KG_SHADER_forms.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:KG_SHADER_forms"
+        mc:Ignorable="d"
+        Title="KG SHADERS" Height="611.533" Width="979" WindowStartupLocation="CenterScreen">
+    <Window.Resources>
+        <Style x:Key="textureLabelStyle">
+            <Setter Property="Control.Margin" Value="125,10,185,87"/>
+            <Setter Property="Control.HorizontalAlignment" Value="Left"/>
+            <Setter Property="Control.VerticalAlignment" Value="Top"/>
+            <Setter Property="Control.Width" Value="81"/>
+            <Setter Property="Control.Height" Value="23"/>
+        </Style>
+        <Style x:Key="textureBtnStyle">
+            <Setter Property="Control.HorizontalAlignment" Value="Left"/>
+            <Setter Property="Control.VerticalAlignment" Value="Top"/>
+            <Setter Property="Control.Width" Value="81"/>
+            <Setter Property="Control.Height" Value="23"/>
+            <Setter Property="Control.Margin" Value="200,10,185,87"/>
+        </Style>
+        <Style x:Key="ButtonStyle_delete" TargetType="{x:Type Button}">
+            <Setter Property="ToolTip" Value="Отключить текстуру"/>
+            <Setter Property="Height" Value="23"/>
+            <Setter Property="VerticalAlignment" Value="Top"/>
+            <Setter Property="HorizontalAlignment" Value="Left"/>
+            <Setter Property="Width" Value="26"/>
+        </Style>
+    </Window.Resources>
+    <Grid>
+        <Button x:Name="btnHelp" Margin="0,0,0,0" HorizontalAlignment="Right" Width="25" Height="25" VerticalAlignment="Top" Click="btnHelp_Click">?</Button>
+        <StackPanel Margin="0,0,0,0" Height="30" VerticalAlignment="Top" Orientation="Horizontal">
+            <Border Width="10"/>
+            <Button x:Name="bSave" Content=" Сохранить " HorizontalAlignment="Center" Height="25" Click="bSave_Click"></Button>
+            <Border Width="10"/>
+            <Button x:Name="SaveAs" Content=" Сохранить как " HorizontalAlignment="Center" Height="25" Click="SaveAs_Click"></Button>
+            <Border Width="10"/>
+            <Button x:Name="bLoadProject" Content=" Загрузить проект " Height="25" Click="bLoadProject_Click"></Button>
+            <Border Width="50"/>
+            <Button x:Name="bOpenModel" Content=" Загрузить модель " Click="bOpenModel_Click" Height="25"></Button>
+            <Border Width="10"/>
+            <Button x:Name="bApplyShaders" Click="bApplyShaders_Click" Content=" Собрать шейдеры " Height="25"></Button>
+            <Border Width="10"/>
+            <Button x:Name="bOpenDrawing" Click="bOpenDrawing_Click" Content=" Открыть панель рисования " Height="25"></Button>
+            <Border Width="10"/>
+        </StackPanel>
+        <Grid Margin="0,30,0.4,0">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition/>
+                <ColumnDefinition Width="Auto"/>
+                <ColumnDefinition/>
+            </Grid.ColumnDefinitions>
+            <Grid.RowDefinitions>
+                <RowDefinition/>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="100"/>
+            </Grid.RowDefinitions>
+            <TabControl Grid.Row="0" Grid.Column="0">
+                <TabItem Header="3D">
+                    <Frame x:Name="grid"/>
+                </TabItem>
+                <TabItem Header="Текстуры">
+                    <ScrollViewer VerticalScrollBarVisibility="Visible" HorizontalScrollBarVisibility="Hidden">
+                        <StackPanel Orientation="Vertical">
+                            <Frame Height="120">
+                                <Frame.Content>
+                                    <Grid>
+                                        <Frame BorderBrush="Black" BorderThickness=".5" Margin="10,10,0,0" Width="100" HorizontalAlignment="Left" VerticalAlignment="Top" Height="100">
+                                            <Frame.Content>
+                                                <Image x:Name="iTexture0"/>
+                                            </Frame.Content>
+                                        </Frame>
+                                        <Button Content="Загрузить" Style="{StaticResource textureBtnStyle}" Click="btnTexLoad0"/>
+                                        <Label Content="TEXTURE__0" Style="{StaticResource textureLabelStyle}"/>
+                                        <Button Margin="286,10,0,0" Click="btnTexDelete0" Style="{StaticResource ButtonStyle_delete}">Х</Button>
+                                        <Button Margin="317,10,0,0" Click="btnLoadDefTexture0" ToolTip="Загрузить текстуру по умоланию" HorizontalAlignment="Left" Width="26" Height="23" VerticalAlignment="Top">Def</Button>
+                                    </Grid>
+                                </Frame.Content>
+                            </Frame>
+                            <Frame>
+                                <Frame.Content>
+                                    <Grid Height="120">
+                                        <Frame BorderBrush="Black" BorderThickness=".5" Margin="10,10,0,0" Width="100" HorizontalAlignment="Left" VerticalAlignment="Top" Height="100">
+                                            <Frame.Content>
+                                                <Image x:Name="iTexture1"/>
+                                            </Frame.Content>
+                                        </Frame>
+                                        <Button Content="Загрузить" Click="btnTexLoad1" Style="{StaticResource textureBtnStyle}"/>
+                                        <Label Content="TEXTURE__1" Style="{StaticResource textureLabelStyle}"/>
+                                        <Button Margin="286,10,154,87" Click="btnTexDelete1" Style="{StaticResource ButtonStyle_delete}">Х</Button>
+                                    </Grid>
+                                </Frame.Content>
+                            </Frame>
+                            <Frame Height="120">
+                                <Frame.Content>
+                                    <Grid>
+                                        <Frame BorderBrush="Black" BorderThickness=".5" Margin="10,10,0,0" Width="100" HorizontalAlignment="Left" VerticalAlignment="Top" Height="100">
+                                            <Frame.Content>
+                                                <Image x:Name="iTexture2"/>
+                                            </Frame.Content>
+                                        </Frame>
+                                        <Button Content="Загрузить" Click="btnTexLoad2" Style="{StaticResource textureBtnStyle}"/>
+                                        <Label Content="TEXTURE__2" Style="{StaticResource textureLabelStyle}"/>
+                                        <Button Margin="286,10,154,87" Click="btnTexDelete2" Style="{StaticResource ButtonStyle_delete}">Х</Button>
+                                    </Grid>
+                                </Frame.Content>
+                            </Frame>
+                            <Frame Height="120">
+                                <Frame.Content>
+                                    <Grid>
+                                        <Frame BorderBrush="Black" BorderThickness=".5" Margin="10,10,0,0" Width="100" HorizontalAlignment="Left" VerticalAlignment="Top" Height="100">
+                                            <Frame.Content>
+                                                <Image x:Name="iTexture3"/>
+                                            </Frame.Content>
+                                        </Frame>
+                                        <Button Content="Загрузить" Click="btnTexLoad3" Style="{StaticResource textureBtnStyle}"/>
+                                        <Label Content="TEXTURE__3" Style="{StaticResource textureLabelStyle}"/>
+                                        <Button Margin="286,10,154,87" Click="btnTexDelete3" Style="{StaticResource ButtonStyle_delete}">Х</Button>
+                                    </Grid>
+                                </Frame.Content>
+                            </Frame>
+                        </StackPanel>
+                    </ScrollViewer>
+                </TabItem>
+                <!--<TabItem Header="Вершинный">
+                    <Grid Background="#FFE5E5E5">
+                        <avalonEdit:TextEditor
+                            xmlns:avalonEdit="http://icsharpcode.net/sharpdevelop/avalonedit"
+                            Name="tbVert"
+                            FontFamily="Consolas"
+                            SyntaxHighlighting="C++"
+                            FontSize="10pt"
+                            ShowLineNumbers="True"
+                            Text="
+varying vec2 texCoord;&#13;
+varying vec3 Normal;&#13;
+&#13;
+void main(void)&#13;
+{&#13;
+   gl_Position = gl_ProjectionMatrix * gl_ModelViewMatrix*gl_Vertex;&#13;
+   texCoord = gl_MultiTexCoord0.xy;&#13;
+   Normal = normalize(gl_Normal);&#13;
+}">
+                        </avalonEdit:TextEditor>
+                    </Grid>
+                </TabItem>-->
+                <!--<TabItem Header="Фрагментный">
+                    <Grid Background="#FFE5E5E5">
+                        <avalonEdit:TextEditor
+                            xmlns:avalonEdit="http://icsharpcode.net/sharpdevelop/avalonedit"
+                            Name="tbPix"
+                            FontFamily="Consolas"
+                            SyntaxHighlighting="C++"
+                            FontSize="10pt"
+                            ShowLineNumbers="True"
+                            Text="
+varying vec2 texCoord;&#13;
+varying vec3 Normal;&#13;
+uniform sampler2D iTexture0;&#13;
+&#13;
+void main(void)&#13;
+{&#13;
+    gl_FragColor = vec4(texture2D(iTexture0,texCoord).rgb,1.0);&#13;
+}">
+                        </avalonEdit:TextEditor>
+                    </Grid>
+                </TabItem>-->
+            </TabControl>
+            <GridSplitter Grid.Column="1" Grid.Row="0" Grid.RowSpan="2" Width="5" VerticalAlignment="Stretch" HorizontalAlignment="Center"/>
+            
+            <TabControl Grid.Row="0" Grid.Column="2">
+                <TabItem Header="Рисование" Name="drawingTab">
+                    <Grid Name ="dad">
+                        <Image Name="drawingImage" Stretch="Fill"/>
+                        <InkCanvas Name="inkCanvas" Background="Transparent" MouseUp="InkCanvas_MouseUp"/>
+                        <Image x:Name="ImageContainer" Margin="10,50,10,10"/>
+
+                    </Grid>
+                </TabItem>
+                <DockPanel>
+                    <!-- Панель инструментов -->
+                    <ToolBar DockPanel.Dock="Top">
+                        <Button Name="ColorPickerButton" Click="ColorPickerButton_Click" Width="50" Height="50" Background="Black"/>
+                        <StackPanel Orientation="Horizontal">
+                            <Button Content="-" Click="DecreaseBrushSize_Click" Width="30" Height="30"/>
+                            <TextBox Name="BrushSizeTextBox" Text="5" Width="50" Height="30" VerticalContentAlignment="Center" HorizontalContentAlignment="Center" TextAlignment="Center" TextChanged="BrushSizeTextBox_TextChanged"/>
+                            <Button Content="+" Click="IncreaseBrushSize_Click" Width="30" Height="30"/>
+                        </StackPanel>
+                    </ToolBar>
+
+                    <!-- Панель с цветами, будет скрыта по умолчанию -->
+                    <StackPanel Name="ColorPalette" Orientation="Horizontal" Visibility="Collapsed" DockPanel.Dock="Top">
+                        <Button Background="Red" Width="50" Height="50" Click="ColorButton_Click"/>
+                        <Button Background="Green" Width="50" Height="50" Click="ColorButton_Click"/>
+                        <Button Background="Blue" Width="50" Height="50" Click="ColorButton_Click"/>
+                        <Button Background="Yellow" Width="50" Height="50" Click="ColorButton_Click"/>
+                        <Button Background="White" Width="50" Height="50" Click="ColorButton_Click"/>
+                        <Button Background="Black" Width="50" Height="50" Click="ColorButton_Click"/>
+                    </StackPanel>
+
+
+                </DockPanel>
+                <TabItem Header="Вершинный">
+                    <Grid Background="#FFE5E5E5">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="103*"/>
+                            <ColumnDefinition Width="378*"/>
+                        </Grid.ColumnDefinitions>
+                        <avalonEdit:TextEditor
+                            xmlns:avalonEdit="http://icsharpcode.net/sharpdevelop/avalonedit"
+                            Name="tbVert"
+                            FontFamily="Consolas"
+                            SyntaxHighlighting="C++"
+                            FontSize="10pt"
+                            ShowLineNumbers="True"
+                            Text="
+varying vec2 texCoord;&#13;
+varying vec3 Normal;&#13;
+&#13;
+void main(void)&#13;
+{&#13;
+   gl_Position = gl_ProjectionMatrix * gl_ModelViewMatrix*gl_Vertex;&#13;
+   texCoord = gl_MultiTexCoord0.xy;&#13;
+   Normal = normalize(gl_Normal);&#13;
+}" Grid.ColumnSpan="2">
+                        </avalonEdit:TextEditor>
+                    </Grid>
+                </TabItem>
+                
+                <TabItem Header="Фрагментный">
+                    <Grid Background="#FFE5E5E5">
+                        <avalonEdit:TextEditor
+                            xmlns:avalonEdit="http://icsharpcode.net/sharpdevelop/avalonedit"
+                            Name="tbPix"
+                            FontFamily="Consolas"
+                            SyntaxHighlighting="C++"
+                            FontSize="10pt"
+                            ShowLineNumbers="True"
+                            Text="
+varying vec2 texCoord;&#13;
+varying vec3 Normal;&#13;
+uniform sampler2D iTexture0;&#13;
+&#13;
+void main(void)&#13;
+{&#13;
+    gl_FragColor = vec4(texture2D(iTexture0,texCoord).rgb,1.0);&#13;
+}">
+                        </avalonEdit:TextEditor>
+                    </Grid>
+                </TabItem>
+            </TabControl>
+            <GridSplitter Grid.Column="0" Grid.Row="1" Grid.ColumnSpan="3" Height="5" HorizontalAlignment="Stretch" VerticalAlignment="Center"/>
+            <Frame x:Name="errFrame" Grid.Row="2" Grid.Column="0" Grid.ColumnSpan="3">
+                <Frame.Content>
+                    <avalonEdit:TextEditor
+                        xmlns:avalonEdit="http://icsharpcode.net/sharpdevelop/avalonedit"
+                        Name="tbLog"
+                        FontFamily="Consolas"
+                        FontSize="9pt" Margin="0,0,0,-0.4"/>
+                </Frame.Content>
+            </Frame>
+        </Grid>
+    </Grid>
+</Window>
